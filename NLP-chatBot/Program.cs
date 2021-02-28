@@ -21,12 +21,22 @@ namespace NLP_chatBot
 
         static void Main(string[] args)
         {
+            //the input text
             var text = new Sentence("This is a test line. and this should work well.");
+
+            // Lemmas
             var lemmas = text.Lemmas;
+
+            //POS Tags
             var pos = text.PosTags;
+
+            // Weather the sentence is positive or negative
             var sen = text.Sentiment;
+
+            // Record the word with its properties that we can use later to make decesions
             var words = new List<word>();
 
+            // Printout the original words indevidually
             foreach (var r in text.OriginalWords)
             {
                 Console.WriteLine(r + " :: ");
@@ -34,16 +44,20 @@ namespace NLP_chatBot
 
             Console.WriteLine("###########");
 
+            // print out and record the words with their props
             for (int noW = 0; noW<text.OriginalWords.Count; noW++)
             {
                 Console.WriteLine(lemmas.ToArray()[noW] + ">" + pos.ToArray()[noW]);
+                // wordd is the struct i madeabove
                 words.Add(new word { Original = text.OriginalWords.ToArray()[noW], Lemma = lemmas.ToArray()[noW], PosTag = pos.ToArray()[noW] });
             }
 
             Console.WriteLine("+++++++++++++");
 
+            //lets test it out;
             foreach (var w in words)
             {
+                // print all saved words
                 Console.WriteLine(w.Original + ":::" + w.Lemma + ":::" + w.PosTag);
             }
 
